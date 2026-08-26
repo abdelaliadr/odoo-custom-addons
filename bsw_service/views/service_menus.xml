@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <menuitem id="menu_bsw_service_root" name="Service &amp; Interventions" sequence="10"/>
+
+        <menuitem id="menu_service_intervention"
+                  name="Interventions"
+                  parent="menu_bsw_service_root"
+                  action="action_service_intervention"
+                  sequence="10"/>
+
+        <menuitem id="menu_service_configuration"
+                  name="Configuration"
+                  parent="menu_bsw_service_root"
+                  sequence="90"/>
+
+        <menuitem id="menu_service_team"
+                  name="Équipes"
+                  parent="menu_service_configuration"
+                  action="action_service_team"
+                  sequence="10"/>
+
+        <menuitem id="menu_service_technician"
+                  name="Techniciens"
+                  parent="menu_service_configuration"
+                  action="action_service_technician"
+                  sequence="20"/>
+
+        <menuitem id="menu_service_equipment"
+                  name="Équipements"
+                  parent="menu_service_configuration"
+                  action="action_service_equipment"
+                  sequence="30"/>
+
+        <menuitem id="menu_service_contract"
+                  name="Contrats"
+                  parent="menu_service_configuration"
+                  action="action_service_contract"
+                  sequence="40"/>
+    </data>
+</odoo>

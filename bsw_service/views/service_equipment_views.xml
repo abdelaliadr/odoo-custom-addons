@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_service_equipment_list" model="ir.ui.view">
+            <field name="name">service.equipment.list</field>
+            <field name="model">service.equipment</field>
+            <field name="arch" type="xml">
+                <list string="Équipements">
+                    <field name="name"/>
+                    <field name="partner_id"/>
+                    <field name="serial_number"/>
+                    <field name="installation_date"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_service_equipment_form" model="ir.ui.view">
+            <field name="name">service.equipment.form</field>
+            <field name="model">service.equipment</field>
+            <field name="arch" type="xml">
+                <form string="Équipement">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="partner_id"/>
+                            <field name="serial_number"/>
+                            <field name="model_reference"/>
+                            <field name="installation_date"/>
+                            <field name="active"/>
+                        </group>
+                        <notebook>
+                            <page string="Interventions">
+                                <field name="intervention_ids">
+                                    <list>
+                                        <field name="name"/>
+                                        <field name="technician_id"/>
+                                        <field name="date_planned"/>
+                                        <field name="state"/>
+                                    </list>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_service_equipment" model="ir.actions.act_window">
+            <field name="name">Équipements</field>
+            <field name="res_model">service.equipment</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+    </data>
+</odoo>

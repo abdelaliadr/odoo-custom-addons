@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <!-- Search -->
+<record id="view_service_intervention_search" model="ir.ui.view">
+    <field name="name">service.intervention.search</field>
+    <field name="model">service.intervention</field>
+    <field name="arch" type="xml">
+        <search string="Interventions">
+            <field name="name"/>
+            <field name="partner_id"/>
+            <field name="technician_id"/>
+            <filter string="Mes interventions" name="my_interventions"
+                    domain="[('technician_id.user_id', '=', uid)]"/>
+            <filter string="Archivées" name="inactive"
+                    domain="[('active', '=', False)]"/>
+            <separator/>
+            <filter string="Technicien" name="group_technician"
+                    context="{'group_by': 'technician_id'}"/>
+            <filter string="Statut" name="group_state"
+                    context="{'group_by': 'state'}"/>
+        </search>
+    </field>
+</record>
+
+        <!-- Liste -->
+        <record id="view_service_intervention_list" model="ir.ui.view">
+            <field name="name">service.intervention.list</field>
+            <field name="model">service.intervention</field>
+            <field name="arch" type="xml">
+                <list string="Interventions">
+                    <field name="name" class="text-center"/>
+                    <field name="partner_id" class="text-center"/>
+                    <field name="equipment_id" class="text-center"/>
+                    <field name="technician_id" class="text-center"/>
+                    <field name="date_planned" class="text-center"/>
+                    <field name="state" class="text-center"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- Form -->
+<record id="view_service_intervention_form" model="ir.ui.view">
+    <field name="name">service.intervention.form</field>
+    <field name="model">service.intervention</field>
+    <field name="arch" type="xml">
+        <form string="Intervention">
+            <sheet>
+                <group>
+                    <field name="name" readonly="1"/>
+                    <field name="partner_id"/>
+                    <field name="equipment_id"/>
+                    <field name="technician_id"/>
+                    <field name="contract_id"/>
+                    <field name="date_planned"/>
+                    <field name="state"/>
+                </group>
+                <notebook>
+                    <page string="Pièces consommées">
+                        <field name="line_ids">
+                            <list editable="bottom">
+                                <field name="product_id"/>
+                                <field name="quantity"/>
+                                <field name="price_unit"/>
+                                <field name="price_subtotal"/>
+                            </list>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+            <chatter/>
+        </form>
+    </field>
+</record>
+
+        <!-- Action -->
+<record id="action_service_intervention" model="ir.actions.act_window">
+    <field name="name">Interventions</field>
+    <field name="res_model">service.intervention</field>
+    <field name="view_mode">list,form</field>
+    <field name="search_view_id" ref="view_service_intervention_search"/>
+    <field name="context">{'search_default_my_interventions': 1}</field>
+</record>
+
+    </data>
+</odoo>

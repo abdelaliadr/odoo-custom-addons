@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_service_intervention_user,service.intervention.user,model_service_intervention,base.group_user,1,1,1,1
+access_service_team_user,service.team.user,model_service_team,base.group_user,1,1,1,1
+access_service_technician_user,service.technician.user,model_service_technician,base.group_user,1,1,1,1
+access_service_equipment_user,service.equipment.user,model_service_equipment,base.group_user,1,1,1,1
+access_service_contract_user,service.contract.user,model_service_contract,base.group_user,1,1,1,1
+access_service_intervention_line_user,service.intervention.line.user,model_service_intervention_line,base.group_user,1,1,1,1
