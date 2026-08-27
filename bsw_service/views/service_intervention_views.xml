@@ -34,6 +34,7 @@
                     <field name="equipment_id" class="text-center"/>
                     <field name="technician_id" class="text-center"/>
                     <field name="date_planned" class="text-center"/>
+                    <field name="duration" class="text-center"/>
                     <field name="state" class="text-center"/>
                 </list>
             </field>
@@ -45,6 +46,20 @@
     <field name="model">service.intervention</field>
     <field name="arch" type="xml">
         <form string="Intervention">
+        <header>
+    <button name="action_plan" string="Planifier" type="object"
+            class="oe_highlight" invisible="state != 'draft'"/>
+    <button name="action_start" string="Démarrer" type="object"
+            class="oe_highlight" invisible="state != 'planned'"/>
+    <button name="action_done" string="Terminer" type="object"
+            class="oe_highlight" invisible="state != 'in_progress'"/>
+    <button name="action_invoice" string="Facturer" type="object"
+            class="oe_highlight" invisible="state != 'done'"/>
+    <button name="action_reset_draft" string="Remettre en brouillon" type="object"
+            invisible="state in ('draft', 'invoiced')"/>
+    <field name="state" widget="statusbar"
+           statusbar_visible="draft,planned,in_progress,done,invoiced"/>
+    </header>
             <sheet>
                 <group>
                     <field name="name" readonly="1"/>
@@ -53,6 +68,10 @@
                     <field name="technician_id"/>
                     <field name="contract_id"/>
                     <field name="date_planned"/>
+                    <field name="date_start"/>
+                    <field name="date_end"/>
+                    <field name="duration" readonly="1"/>
+                    <field name="amount_parts" readonly="1"/>
                     <field name="state"/>
                 </group>
                 <notebook>

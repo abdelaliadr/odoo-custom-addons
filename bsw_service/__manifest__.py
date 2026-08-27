@@ -21,6 +21,7 @@
     "demo": ["demo/demo_data.xml"],
     "application": True,
     "installable": True,
+    "icon": "bsw_service/static/description/icon.png",
     "assets": {
     "web.assets_backend": [
         "bsw_service/static/src/scss/service_intervention.scss",
