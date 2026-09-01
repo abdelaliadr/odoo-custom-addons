@@ -4,6 +4,7 @@ from odoo import fields, models
 class ServiceContract(models.Model):
     _name = "service.contract"
     _description = "Contrat de service"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "date_start desc"
 
     name = fields.Char(string="Référence", required=True, copy=False)

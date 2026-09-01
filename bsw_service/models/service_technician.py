@@ -4,6 +4,7 @@ from odoo import fields, models
 class ServiceTechnician(models.Model):
     _name = "service.technician"
     _description = "Technicien"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "name"
 
     name = fields.Char(string="Nom", required=True)

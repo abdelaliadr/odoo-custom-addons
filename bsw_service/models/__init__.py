@@ -4,3 +4,6 @@ from . import service_equipment
 from . import service_contract
 from . import service_intervention
 from . import service_intervention_line
+from . import res_partner
+from . import product_template
+from . import sale_order

@@ -4,8 +4,8 @@ from odoo.exceptions import UserError
 class ServiceIntervention(models.Model):
     _name = "service.intervention"
     _description = "Intervention technique"
-    _inherit = ["mail.thread", "mail.activity.mixin"]
     _order = "date_planned desc, id desc"
+    _inherit = ["mail.thread", "mail.activity.mixin"]
     _name_unique = models.Constraint(
         "unique(name)",
         "La référence d'une intervention doit être unique !",
@@ -47,9 +47,8 @@ class ServiceIntervention(models.Model):
         ("invoiced", "Facturée"),
     ], string="Statut", default="draft", required=True, tracking=True)
     amount_parts = fields.Monetary(string="Coût des pièces", currency_field="currency_id", compute="_compute_amount_parts", store=True)
-    currency_id = fields.Many2one(
-    "res.currency", string="Devise",
-    related="company_id.currency_id", store=True, readonly=True)
+    internal_cost = fields.Monetary(string="Coût interne", currency_field="currency_id",groups="bsw_service.group_service_manager")
+    currency_id = fields.Many2one("res.currency", string="Devise",related="company_id.currency_id", store=True, readonly=True)
     
     @api.model_create_multi
     def create(self, vals_list):
@@ -78,7 +77,7 @@ class ServiceIntervention(models.Model):
     def action_plan(self):
         self.ensure_one()
         if self.state != "draft":
-            raise UserError(_("Seule une intervention en brouillon peut être planifiée."))
+            raise UserError("Seule une intervention en brouillon peut être planifiée.")
         if not self.technician_id:
             raise UserError(_("Un technicien est obligatoire pour planifier."))
         self.state = "planned"
@@ -86,34 +85,34 @@ class ServiceIntervention(models.Model):
     def action_start(self):
         self.ensure_one()
         if self.state != "planned":
-            raise UserError(_("Seule une intervention planifiée peut être démarrée."))
+            raise UserError("Seule une intervention planifiée peut être démarrée.")
         self.date_start = fields.Datetime.now()
         self.state = "in_progress"
 
     def action_done(self):
         self.ensure_one()
         if self.state != "in_progress":
-            raise UserError(_("Seule une intervention en cours peut être terminée."))
+            raise UserError("Seule une intervention en cours peut être terminée.")
         self.date_end = fields.Datetime.now()
         self.state = "done"
 
     def action_invoice(self):
         self.ensure_one()
         if self.state != "done":
-            raise UserError(_("Seule une intervention terminée peut être facturée."))
+            raise UserError("Seule une intervention terminée peut être facturée.")
         self.state = "invoiced"
 
     def action_reset_draft(self):
         self.ensure_one()
         if self.state == "invoiced":
-            raise UserError(_("Une intervention facturée ne peut pas repasser en brouillon."))
+            raise UserError("Une intervention facturée ne peut pas repasser en brouillon.")
         self.state = "draft"
 
     @api.constrains("state", "technician_id")
     def _check_technician_exists(self):
         for intervention in self:
             if intervention.state != "draft" and not intervention.technician_id:
-                raise UserError(_("Une intervention nécessite un technicien dès qu'elle n'est plus en brouillon."))
+                raise UserError("Une intervention nécessite un technicien dès qu'elle n'est plus en brouillon.")
 
     @api.constrains("date_start","date_end")
     def _check_dates(self):

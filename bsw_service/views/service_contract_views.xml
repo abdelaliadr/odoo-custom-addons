@@ -34,6 +34,7 @@
                             <field name="product_ids" nolabel="1"/>
                         </group>
                     </sheet>
+                    <chatter/>
                 </form>
             </field>
         </record>

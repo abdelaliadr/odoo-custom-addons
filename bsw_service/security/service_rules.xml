@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    <record id="rule_intervention_admin" model="ir.rule">
+    <field name="name">Intervention : administrateur voit tout</field>
+    <field name="model_id" ref="model_service_intervention"/>
+    <field name="groups" eval="[(4, ref('group_service_admin'))]"/>
+    <field name="domain_force">[(1, '=', 1)]</field>
+</record>
+        <record id="rule_intervention_technician" model="ir.rule">
+            <field name="name">Intervention : ses propres interventions</field>
+            <field name="model_id" ref="model_service_intervention"/>
+            <field name="groups" eval="[(4, ref('group_service_technician'))]"/>
+            <field name="domain_force">[('technician_id.user_id', '=', user.id)]</field>
+        </record>
+        <record id="rule_intervention_manager" model="ir.rule">
+    <field name="name">Intervention : équipe du responsable</field>
+    <field name="model_id" ref="model_service_intervention"/>
+    <field name="groups" eval="[(4, ref('group_service_manager'))]"/>
+    <field name="domain_force">[('technician_id.team_id.manager_id.user_id', '=', user.id)]</field>
+</record>
+<record id="rule_intervention_line_technician" model="ir.rule">
+    <field name="name">Ligne d'intervention : ses propres interventions</field>
+    <field name="model_id" ref="model_service_intervention_line"/>
+    <field name="groups" eval="[(4, ref('group_service_technician'))]"/>
+    <field name="domain_force">[('intervention_id.technician_id.user_id', '=', user.id)]</field>
+</record>
+
+<record id="rule_intervention_line_manager" model="ir.rule">
+    <field name="name">Ligne d'intervention : équipe du responsable</field>
+    <field name="model_id" ref="model_service_intervention_line"/>
+    <field name="groups" eval="[(4, ref('group_service_manager'))]"/>
+    <field name="domain_force">[('intervention_id.technician_id.team_id.manager_id.user_id', '=', user.id)]</field>
+</record>
+
+<record id="rule_intervention_line_admin" model="ir.rule">
+    <field name="name">Ligne d'intervention : administrateur voit tout</field>
+    <field name="model_id" ref="model_service_intervention_line"/>
+    <field name="groups" eval="[(4, ref('group_service_admin'))]"/>
+    <field name="domain_force">[(1, '=', 1)]</field>
+</record>
+    </data>
+</odoo>

@@ -14,6 +14,8 @@
                     domain="[('technician_id.user_id', '=', uid)]"/>
             <filter string="Archivées" name="inactive"
                     domain="[('active', '=', False)]"/>
+                    <filter string="Non facturées" name="not_invoiced"
+                    domain="[('state', '!=', 'invoiced')]"/>
             <separator/>
             <filter string="Technicien" name="group_technician"
                     context="{'group_by': 'technician_id'}"/>
@@ -24,21 +26,62 @@
 </record>
 
         <!-- Liste -->
-        <record id="view_service_intervention_list" model="ir.ui.view">
-            <field name="name">service.intervention.list</field>
-            <field name="model">service.intervention</field>
-            <field name="arch" type="xml">
-                <list string="Interventions">
-                    <field name="name" class="text-center"/>
-                    <field name="partner_id" class="text-center"/>
-                    <field name="equipment_id" class="text-center"/>
-                    <field name="technician_id" class="text-center"/>
-                    <field name="date_planned" class="text-center"/>
-                    <field name="duration" class="text-center"/>
-                    <field name="state" class="text-center"/>
-                </list>
-            </field>
-        </record>
+<record id="view_service_intervention_list" model="ir.ui.view">
+    <field name="name">service.intervention.list</field>
+    <field name="model">service.intervention</field>
+    <field name="arch" type="xml">
+        <list string="Interventions"
+              decoration-muted="state == 'draft'"
+              decoration-info="state == 'planned'"
+              decoration-warning="state == 'in_progress'"
+              decoration-success="state == 'done'"
+              decoration-bf="state == 'invoiced'">
+            <field name="name"/>
+            <field name="partner_id"/>
+            <field name="equipment_id" optional="hide"/>
+            <field name="technician_id"/>
+            <field name="date_planned"/>
+            <field name="duration" optional="hide"/>
+            <field name="amount_parts" optional="show"/>
+            <field name="state"/>
+        </list>
+    </field>
+</record>
+
+        <!-- Kanban -->
+<record id="view_service_intervention_kanban" model="ir.ui.view">
+    <field name="name">service.intervention.kanban</field>
+    <field name="model">service.intervention</field>
+    <field name="arch" type="xml">
+        <kanban default_group_by="state" class="o_kanban_small_column">
+            <field name="name"/>
+            <field name="partner_id"/>
+            <field name="technician_id"/>
+            <field name="date_planned"/>
+            <field name="amount_parts"/>
+            <field name="state"/>
+            <templates>
+                <t t-name="card">
+                    <div class="oe_kanban_card oe_kanban_global_click">
+                        <div class="o_kanban_record_top">
+                            <strong><field name="name"/></strong>
+                        </div>
+                        <div class="o_kanban_record_body">
+                            <field name="partner_id"/><br/>
+                            <field name="technician_id"/><br/>
+                            <field name="date_planned"/>
+                        </div>
+                        <div class="o_kanban_record_bottom">
+                            <span class="o_kanban_record_subtitle">
+                                <field name="amount_parts" widget="monetary"/>
+                            </span>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
 
         <!-- Form -->
 <record id="view_service_intervention_form" model="ir.ui.view">
@@ -61,32 +104,42 @@
            statusbar_visible="draft,planned,in_progress,done,invoiced"/>
     </header>
             <sheet>
-                <group>
-                    <field name="name" readonly="1"/>
-                    <field name="partner_id"/>
-                    <field name="equipment_id"/>
-                    <field name="technician_id"/>
-                    <field name="contract_id"/>
-                    <field name="date_planned"/>
-                    <field name="date_start"/>
-                    <field name="date_end"/>
-                    <field name="duration" readonly="1"/>
-                    <field name="amount_parts" readonly="1"/>
-                    <field name="state"/>
-                </group>
-                <notebook>
-                    <page string="Pièces consommées">
-                        <field name="line_ids">
-                            <list editable="bottom">
-                                <field name="product_id"/>
-                                <field name="quantity"/>
-                                <field name="price_unit"/>
-                                <field name="price_subtotal"/>
-                            </list>
-                        </field>
-                    </page>
-                </notebook>
-            </sheet>
+    <div class="oe_button_box" name="button_box">
+        <!-- réservé pour de futurs boutons statistiques -->
+    </div>
+    <group>
+        <field name="name" readonly="1"/>
+    </group>
+    <group>
+        <group>
+            <field name="partner_id"/>
+            <field name="equipment_id"/>
+            <field name="contract_id"/>
+            <field name="technician_id"/>
+            <field name="state"/>
+        </group>
+        <group>
+            <field name="date_planned"/>
+            <field name="date_start"/>
+            <field name="date_end"/>
+            <field name="duration" readonly="1"/>
+            <field name="amount_parts" readonly="1"/>
+            <field name="internal_cost"/>
+        </group>
+    </group>
+    <notebook>
+        <page string="Pièces consommées">
+            <field name="line_ids">
+                <list editable="bottom">
+                    <field name="product_id"/>
+                    <field name="quantity"/>
+                    <field name="price_unit"/>
+                    <field name="price_subtotal"/>
+                </list>
+            </field>
+        </page>
+    </notebook>
+</sheet>
             <chatter/>
         </form>
     </field>
@@ -96,10 +149,9 @@
 <record id="action_service_intervention" model="ir.actions.act_window">
     <field name="name">Interventions</field>
     <field name="res_model">service.intervention</field>
-    <field name="view_mode">list,form</field>
+    <field name="view_mode">list,kanban,form</field>
     <field name="search_view_id" ref="view_service_intervention_search"/>
     <field name="context">{'search_default_my_interventions': 1}</field>
 </record>
-
     </data>
 </odoo>

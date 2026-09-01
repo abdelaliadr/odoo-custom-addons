@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_partner_form_inherit_bsw_service" model="ir.ui.view">
+            <field name="name">res.partner.form.inherit.bsw.service</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@name='button_box']" position="inside">
+                    <button type="object"
+                            name="action_view_service_interventions"
+                            class="oe_stat_button"
+                            icon="fa-wrench">
+                        <field name="service_intervention_count"
+                               string="Interventions"
+                               widget="statinfo"/>
+                    </button>
+                </xpath>
+                <xpath expr="//field[@name='category_id']" position="after">
+    <field name="service_level"/>
+              </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
