@@ -95,6 +95,9 @@ class ServiceIntervention(models.Model):
             raise UserError("Seule une intervention en cours peut être terminée.")
         self.date_end = fields.Datetime.now()
         self.state = "done"
+        template = self.env.ref("bsw_service.mail_template_intervention_done", raise_if_not_found=False)
+        if template and self.partner_id.email:
+            template.send_mail(self.id, force_send=True)
 
     def action_invoice(self):
         self.ensure_one()
@@ -134,3 +137,48 @@ class ServiceIntervention(models.Model):
         for intervention in self:
             if intervention.state == "invoiced":
                 raise UserError("Une intervention facturée ne peut pas être supprimée")               
+
+
+    def _cron_alert_overdue_interventions(self):
+     from datetime import timedelta
+
+     threshold = fields.Datetime.now() - timedelta(hours=48)
+
+     overdue = self.search([
+        ("state", "=", "planned"),
+        ("date_planned", "<=", threshold),
+    ])
+
+     for intervention in overdue:
+        if (not intervention.technician_id
+            or not intervention.technician_id.team_id):
+            continue
+
+        manager = intervention.technician_id.team_id.manager_id
+
+        if not manager or not manager.user_id:
+            continue
+
+        already_alerted = self.env["mail.activity"].search_count([
+            ("res_model", "=", "service.intervention"),
+            ("res_id", "=", intervention.id),
+            (
+                "activity_type_id",
+                "=",
+                self.env.ref("mail.mail_activity_data_todo").id,
+            ),
+            ("user_id", "=", manager.user_id.id),
+        ])
+
+        if already_alerted:
+            continue
+
+        intervention.activity_schedule(
+            "mail.mail_activity_data_todo",
+            summary="Intervention en retard",
+            note=(
+                "L'intervention %s est planifiée depuis plus de 48h "
+                "sans démarrage."
+            ) % intervention.name,
+            user_id=manager.user_id.id,
+        )        

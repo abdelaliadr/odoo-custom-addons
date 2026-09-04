@@ -130,7 +130,7 @@
     <notebook>
         <page string="Pièces consommées">
             <field name="line_ids">
-                <list editable="bottom">
+                <list>
                     <field name="product_id"/>
                     <field name="quantity"/>
                     <field name="price_unit"/>
