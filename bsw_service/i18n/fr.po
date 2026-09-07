@@ -1,0 +1,321 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * bsw_service
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: bsw_service
+#: model:ir.model,name:bsw_service.model_service_intervention
+msgid "Technical Intervention"
+msgstr "Intervention technique"
+
+#. module: bsw_service
+#: model:ir.model,name:bsw_service.model_service_equipment
+msgid "Customer Equipment"
+msgstr "Équipement client"
+
+#. module: bsw_service
+#: model:ir.model,name:bsw_service.model_service_contract
+msgid "Service Contract"
+msgstr "Contrat de service"
+
+#. module: bsw_service
+#: model:ir.model,name:bsw_service.model_service_team
+msgid "Technical Team"
+msgstr "Équipe technique"
+
+#. module: bsw_service
+#: model:ir.model,name:bsw_service.model_service_technician
+msgid "Technician"
+msgstr "Technicien"
+
+#. module: bsw_service
+#: model:ir.model,name:bsw_service.model_service_intervention_line
+msgid "Part consumed during an intervention"
+msgstr "Pièce consommée sur une intervention"
+
+#. module: bsw_service
+msgid "Reference"
+msgstr "Référence"
+
+#. module: bsw_service
+msgid "Active"
+msgstr "Actif"
+
+#. module: bsw_service
+msgid "Customer"
+msgstr "Client"
+
+#. module: bsw_service
+msgid "Equipment"
+msgstr "Équipement"
+
+#. module: bsw_service
+msgid "Technician"
+msgstr "Technicien"
+
+#. module: bsw_service
+msgid "Contract"
+msgstr "Contrat"
+
+#. module: bsw_service
+msgid "Company"
+msgstr "Société"
+
+#. module: bsw_service
+msgid "Planned Date"
+msgstr "Date planifiée"
+
+#. module: bsw_service
+msgid "Start Date"
+msgstr "Date de début"
+
+#. module: bsw_service
+msgid "End Date"
+msgstr "Date de fin"
+
+#. module: bsw_service
+msgid "Intervention Duration (hours)"
+msgstr "Durée de l'intervention (heures)"
+
+#. module: bsw_service
+msgid "Consumed Parts"
+msgstr "Pièces consommées"
+
+#. module: bsw_service
+msgid "Observations"
+msgstr "Observations"
+
+#. module: bsw_service
+msgid "Status"
+msgstr "Statut"
+
+#. module: bsw_service
+msgid "Parts Cost"
+msgstr "Coût des pièces"
+
+#. module: bsw_service
+msgid "Internal Cost"
+msgstr "Coût interne"
+
+#. module: bsw_service
+msgid "Currency"
+msgstr "Devise"
+
+#. module: bsw_service
+msgid "Invoice"
+msgstr "Facture"
+
+#. module: bsw_service
+msgid "Name"
+msgstr "Nom"
+
+#. module: bsw_service
+msgid "Linked User"
+msgstr "Utilisateur lié"
+
+#. module: bsw_service
+msgid "Team"
+msgstr "Équipe"
+
+#. module: bsw_service
+msgid "Phone"
+msgstr "Téléphone"
+
+#. module: bsw_service
+msgid "Number of Interventions"
+msgstr "Nombre d'interventions"
+
+#. module: bsw_service
+msgid "Team Name"
+msgstr "Nom de l'équipe"
+
+#. module: bsw_service
+msgid "Number of Technicians"
+msgstr "Nombre de techniciens"
+
+#. module: bsw_service
+msgid "Manager"
+msgstr "Responsable"
+
+#. module: bsw_service
+msgid "Serial Number"
+msgstr "Numéro de série"
+
+#. module: bsw_service
+msgid "Model Reference"
+msgstr "Référence modèle"
+
+#. module: bsw_service
+msgid "Installation Date"
+msgstr "Date d'installation"
+
+#. module: bsw_service
+msgid "Warranty End Date"
+msgstr "Fin de garantie"
+
+#. module: bsw_service
+msgid "Under Warranty"
+msgstr "Sous garantie"
+
+#. module: bsw_service
+msgid "Contract Type"
+msgstr "Type de contrat"
+
+#. module: bsw_service
+msgid "Covered Products"
+msgstr "Produits couverts"
+
+#. module: bsw_service
+msgid "Product"
+msgstr "Produit"
+
+#. module: bsw_service
+msgid "Quantity"
+msgstr "Quantité"
+
+#. module: bsw_service
+msgid "Unit Price"
+msgstr "Prix unitaire"
+
+#. module: bsw_service
+msgid "Subtotal"
+msgstr "Sous-total"
+
+#. module: bsw_service
+msgid "Interventions"
+msgstr "Interventions"
+
+#. module: bsw_service
+msgid "Standard"
+msgstr "Standard"
+
+#. module: bsw_service
+msgid "Premium"
+msgstr "Premium"
+
+#. module: bsw_service
+msgid "24/7 Emergency"
+msgstr "Urgence 24/7"
+
+#. module: bsw_service
+msgid "Draft"
+msgstr "Brouillon"
+
+#. module: bsw_service
+msgid "Planned"
+msgstr "Planifiée"
+
+#. module: bsw_service
+msgid "In Progress"
+msgstr "En cours"
+
+#. module: bsw_service
+msgid "Completed"
+msgstr "Terminée"
+
+#. module: bsw_service
+msgid "Invoiced"
+msgstr "Facturée"
+
+#. module: bsw_service
+msgid "Spare Part"
+msgstr "Pièce détachée"
+
+#. module: bsw_service
+msgid "Intervention Sequence"
+msgstr "Séquence Intervention"
+
+#. module: bsw_service
+msgid "Interventions: Overdue Alert (48h)"
+msgstr "Interventions : alerte retard (48h)"
+
+#. module: bsw_service
+msgid "Intervention: administrator sees everything"
+msgstr "Intervention : administrateur voit tout"
+
+#. module: bsw_service
+msgid "Intervention: own interventions"
+msgstr "Intervention : ses propres interventions"
+
+#. module: bsw_service
+msgid "Intervention: manager's team"
+msgstr "Intervention : équipe du responsable"
+
+#. module: bsw_service
+msgid "Intervention Line: own interventions"
+msgstr "Ligne d'intervention : ses propres interventions"
+
+#. module: bsw_service
+msgid "Intervention Line: manager's team"
+msgstr "Ligne d'intervention : équipe du responsable"
+
+#. module: bsw_service
+msgid "Intervention Line: administrator sees everything"
+msgstr "Ligne d'intervention : administrateur voit tout"
+
+#. module: bsw_service
+msgid "New"
+msgstr "Nouveau"
+
+#. module: bsw_service
+msgid "Only a draft intervention can be planned."
+msgstr "Seule une intervention en brouillon peut être planifiée."
+
+#. module: bsw_service
+msgid "A technician is required to plan an intervention."
+msgstr "Un technicien est obligatoire pour planifier."
+
+#. module: bsw_service
+msgid "Only a planned intervention can be started."
+msgstr "Seule une intervention planifiée peut être démarrée."
+
+#. module: bsw_service
+msgid "Only an ongoing intervention can be completed."
+msgstr "Seule une intervention en cours peut être terminée."
+
+#. module: bsw_service
+msgid "Only a completed intervention can be invoiced."
+msgstr "Seule une intervention terminée peut être facturée."
+
+#. module: bsw_service
+msgid "An invoiced intervention cannot be reset to draft."
+msgstr "Une intervention facturée ne peut pas repasser en brouillon."
+
+#. module: bsw_service
+msgid "An intervention requires a technician once it is no longer in draft."
+msgstr "Une intervention nécessite un technicien dès qu'elle n'est plus en brouillon."
+
+#. module: bsw_service
+msgid "The end date cannot be earlier than the start date."
+msgstr "La date de fin ne peut pas précéder la date de début."
+
+#. module: bsw_service
+msgid "An invoiced intervention cannot be deleted."
+msgstr "Une intervention facturée ne peut pas être supprimée."
+
+#. module: bsw_service
+msgid "Overdue Intervention"
+msgstr "Intervention en retard"
+
+#. module: bsw_service
+msgid "Intervention %s has been planned for more than 48 hours without being started."
+msgstr "L'intervention %s est planifiée depuis plus de 48h sans démarrage."
+
+#. module: bsw_service
+msgid "Technician responsible for this team, who can see all interventions assigned to its members."
+msgstr "Technicien responsable de cette équipe, voit toutes les interventions de ses membres."
+
+#. module: bsw_service
+msgid "Odoo user corresponding to this technician, useful for filtering 'My Interventions'."
+msgstr "Utilisateur Odoo correspondant à ce technicien, utile pour filtrer 'mes interventions'."
+
+#. module: bsw_service
+msgid "Product that can be used as a spare part during an intervention."
+msgstr "Produit utilisable comme pièce détachée sur une intervention."
