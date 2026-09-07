@@ -4,21 +4,27 @@ from odoo import api, fields, models
 class ResPartner(models.Model):
     _inherit = "res.partner"
 
+    intervention_ids = fields.One2many(
+        "service.intervention",
+        "partner_id",
+        string="Interventions",
+    )
+
     service_intervention_count = fields.Integer(
-        string="Nombre d'interventions",
+        string="Number of Interventions",
         compute="_compute_service_intervention_count"
     )
     service_level = fields.Selection([
     ("standard", "Standard"),
     ("premium", "Premium"),
-    ("vip", "VIP"),], string="Niveau de service", default="standard")
+    ("vip", "VIP"),], string="Service Level", default="standard")
 
+    api.depends("intervention_ids")
     def _compute_service_intervention_count(self):
         for partner in self:
-            partner.service_intervention_count = self.env["service.intervention"].search_count(
-                [("partner_id", "=", partner.id)]
-            )
-
+            partner.service_intervention_count = len(partner.intervention_ids)
+            
+# context rempli, self_ensure()
     def action_view_service_interventions(self):
         self.ensure_one()
         return {
