@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="report_invoice_document_inherit_bsw_service"
+                  inherit_id="account.report_invoice_document">
+            <xpath expr="//div[@id='informations']" position="inside">
+                <div t-if="o.service_intervention_ids" name="intervention_reference"
+                     class="col-auto col-3 mw-100 mb-2">
+                    <strong>Intervention(s)</strong>
+                    <div t-foreach="o.service_intervention_ids" t-as="interv">
+                        <span t-field="interv.name"/>
+                    </div>
+                </div>
+            </xpath>
+        </template>
+
+    </data>
+</odoo>

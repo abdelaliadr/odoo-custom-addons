@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="action_report_service_intervention" model="ir.actions.report">
+            <field name="name">Bon d'intervention</field>
+            <field name="model">service.intervention</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">bsw_service.report_service_intervention_document</field>
+            <field name="report_file">bsw_service.report_service_intervention_document</field>
+            <field name="binding_model_id" ref="model_service_intervention"/>
+            <field name="binding_type">report</field>
+            <field name="paperformat_id" ref="base.paperformat_euro"/>
+        </record>
+
+        <template id="report_service_intervention_document">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+       <h2>Service Report</h2>
+       <div class="row mt-4">
+        <div class="col-6">
+            <strong>Référence :</strong>
+            <span t-field="doc.name"/><br/>
+            <strong>Date planifiée :</strong>
+            <span t-field="doc.date_planned"/><br/>
+            <strong>Statut :</strong>
+            <span t-field="doc.state"/>
+        </div>
+        <div class="col-6">
+            <strong>Client :</strong>
+            <span t-field="doc.partner_id"/><br/>
+            <strong>Équipement :</strong>
+            <span t-field="doc.equipment_id.name"/><br/>
+            <strong>Technicien :</strong>
+            <span t-field="doc.technician_id.name"/>
+        </div>
+    </div>
+    <h3 class="mt-4">Pièces consommées</h3>
+<table class="table table-sm o_report_table" t-if="doc.line_ids">
+    <thead>
+        <tr>
+            <th>Produit</th>
+            <th class="text-end">Quantité</th>
+            <th class="text-end">Prix unitaire</th>
+            <th class="text-end">Sous-total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr t-foreach="doc.line_ids" t-as="line">
+            <td><span t-field="line.product_id.name"/></td>
+            <td class="text-end"><span t-field="line.quantity"/></td>
+            <td class="text-end"><span t-field="line.price_unit"/></td>
+            <td class="text-end"><span t-field="line.price_subtotal"/></td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" class="text-end"><strong>Total pièces</strong></td>
+            <td class="text-end"><strong><span t-field="doc.amount_parts"/></strong></td>
+        </tr>
+    </tfoot>
+</table>
+<p t-else="">Aucune pièce consommée sur cette intervention.</p>
+<div t-if="doc.equipment_id and doc.equipment_id.is_under_warranty"
+     class="alert alert-info mt-3">
+    <strong>Équipement sous garantie</strong> jusqu'au
+    <span t-field="doc.equipment_id.warranty_end_date"/>.
+</div>
+<div class="mt-4" t-if="doc.observations">
+    <h3>Observations</h3>
+    <p t-field="doc.observations"/>
+</div>
+
+<div class="row mt-5">
+    <div class="col-6">
+        <p><strong>Signature du technicien</strong></p>
+        <div style="border-top: 1px solid #000; margin-top: 60px;"/>
+    </div>
+    <div class="col-6">
+        <p><strong>Signature du client</strong></p>
+        <div style="border-top: 1px solid #000; margin-top: 60px;"/>
+    </div>
+</div>
+</div>
+                    </t>
+                </t>
+            </t>
+        </template>
+
+    </data>
+</odoo>
