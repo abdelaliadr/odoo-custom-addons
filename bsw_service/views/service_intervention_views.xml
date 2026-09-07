@@ -115,6 +115,7 @@
             <field name="partner_id"/>
             <field name="equipment_id"/>
             <field name="contract_id"/>
+            <field name="invoice_id"/>
             <field name="technician_id"/>
             <field name="state"/>
         </group>
@@ -138,6 +139,9 @@
                 </list>
             </field>
         </page>
+        <page string="Observations">
+             <field name="observations" placeholder="Notes, remarques, observations du technicien..."/>
+          </page>
     </notebook>
 </sheet>
             <chatter/>

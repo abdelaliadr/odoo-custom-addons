@@ -3,7 +3,7 @@
     <data noupdate="1">
 
         <record id="cron_alert_overdue_interventions" model="ir.cron">
-            <field name="name">Interventions : alerte retard (48h)</field>
+            <field name="name">Interventions : Overdu Alert (48h)</field>
             <field name="model_id" ref="model_service_intervention"/>
             <field name="state">code</field>
             <field name="code">model._cron_alert_overdue_interventions()</field>

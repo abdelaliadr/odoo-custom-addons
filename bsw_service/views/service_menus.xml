@@ -15,25 +15,25 @@
                   sequence="90"/>
 
         <menuitem id="menu_service_team"
-                  name="Équipes"
+                  name="Teams"
                   parent="menu_service_configuration"
                   action="action_service_team"
                   sequence="10"/>
 
         <menuitem id="menu_service_technician"
-                  name="Techniciens"
+                  name="Technicians"
                   parent="menu_service_configuration"
                   action="action_service_technician"
                   sequence="20"/>
 
         <menuitem id="menu_service_equipment"
-                  name="Équipements"
+                  name="Equipements"
                   parent="menu_service_configuration"
                   action="action_service_equipment"
                   sequence="30"/>
 
         <menuitem id="menu_service_contract"
-                  name="Contrats"
+                  name="Contracts"
                   parent="menu_service_configuration"
                   action="action_service_contract"
                   sequence="40"/>

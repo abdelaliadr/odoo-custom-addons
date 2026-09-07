@@ -1,7 +1,7 @@
 <odoo>
     <data noupdate="1">
         <record id="seq_service_intervention" model="ir.sequence">
-            <field name="name">Séquence Intervention</field>
+            <field name="name">Intervention Sequence</field>
             <field name="code">service.intervention</field>
             <field name="prefix">INT/%(year)s/</field>
             <field name="padding">5</field>

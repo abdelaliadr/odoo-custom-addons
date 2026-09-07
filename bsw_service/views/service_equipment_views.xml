@@ -27,7 +27,7 @@
                             <field name="serial_number"/>
                             <field name="model_reference"/>
                             <field name="installation_date"/>
-                            <field name="active"/>
+                            <field name="warranty_end_date"/>
                         </group>
                         <notebook>
                             <page string="Interventions">
@@ -48,7 +48,7 @@
         </record>
 
         <record id="action_service_equipment" model="ir.actions.act_window">
-            <field name="name">Équipements</field>
+            <field name="name">Equipements</field>
             <field name="res_model">service.equipment</field>
             <field name="view_mode">list,form</field>
         </record>
