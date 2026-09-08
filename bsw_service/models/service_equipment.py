@@ -28,7 +28,7 @@ class ServiceEquipment(models.Model):
     is_under_warranty = fields.Boolean(
         string="Under Warranty", compute="_compute_is_under_warranty")
 
-    @api.depends(intervention_ids)
+    @api.depends("intervention_ids")
     def _compute_intervention_count(self):
         for equip in self:
             equip.intervention_count = len(equip.intervention_ids)
