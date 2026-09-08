@@ -19,12 +19,12 @@ class ResPartner(models.Model):
     ("premium", "Premium"),
     ("vip", "VIP"),], string="Service Level", default="standard")
 
-    api.depends("intervention_ids")
+    @api.depends("intervention_ids")
     def _compute_service_intervention_count(self):
         for partner in self:
             partner.service_intervention_count = len(partner.intervention_ids)
             
-# context rempli, self_ensure()
+
     def action_view_service_interventions(self):
         self.ensure_one()
         return {

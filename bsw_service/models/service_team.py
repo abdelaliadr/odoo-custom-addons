@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class ServiceTeam(models.Model):
@@ -23,7 +23,8 @@ class ServiceTeam(models.Model):
     "service.technician", string="Manager",
     help="Technician responsible for this team,"
          "who can see all interventions assigned to its members.")
-
+    
+    @api.depends("member_ids")
     def _compute_member_count(self):
         for team in self:
             team.member_count = len(team.member_ids)

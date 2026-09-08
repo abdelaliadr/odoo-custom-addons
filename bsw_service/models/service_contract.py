@@ -8,7 +8,7 @@ class ServiceContract(models.Model):
     _order = "date_start desc"
 
     name = fields.Char(string="Reference", required=True, copy=False)
-    active = fields.Boolean(string="Actif", default=True)
+    active = fields.Boolean(string="Active", default=True)
     partner_id = fields.Many2one(
         "res.partner", string="Customer",
         required=True, ondelete="cascade"

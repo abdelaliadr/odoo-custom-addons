@@ -1,4 +1,4 @@
-from odoo import fields, models
+from odoo import fields, models, api
 
 
 class ServiceTechnician(models.Model):
@@ -28,6 +28,7 @@ class ServiceTechnician(models.Model):
         compute="_compute_intervention_count"
     )
 
+    @api.depends(intervention_ids)
     def _compute_intervention_count(self):
         for tech in self:
             tech.intervention_count = len(tech.intervention_ids)

@@ -188,7 +188,7 @@ class ServiceIntervention(models.Model):
 
         intervention.activity_schedule(
             "mail.mail_activity_data_todo",
-            summary="Intervention en retard",
+            summary="Overdue Intervention",
             note=(
                 "Intervention %s has been planned for more than 48 hours"
                 "without being started."
