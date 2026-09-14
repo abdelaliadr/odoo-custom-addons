@@ -1,0 +1,41 @@
+id,name,zipcode,state_id/id,country_id/id
+city_ma_casablanca,Casablanca,20000,state_ma_06,base.ma
+city_ma_rabat,Rabat,10000,state_ma_04,base.ma
+city_ma_fes,Fès,30000,state_ma_03,base.ma
+city_ma_tanger,Tanger,90000,state_ma_01,base.ma
+city_ma_marrakech,Marrakech,40000,state_ma_07,base.ma
+city_ma_sale,Salé,11000,state_ma_04,base.ma
+city_ma_meknes,Meknès,50000,state_ma_03,base.ma
+city_ma_oujda,Oujda,60000,state_ma_02,base.ma
+city_ma_agadir,Agadir,80000,state_ma_09,base.ma
+city_ma_kenitra,Kénitra,14000,state_ma_04,base.ma
+city_ma_tetouan,Tétouan,93000,state_ma_01,base.ma
+city_ma_safi,Safi,46000,state_ma_07,base.ma
+city_ma_temara,Témara,12000,state_ma_04,base.ma
+city_ma_laayoune,Laâyoune,70000,state_ma_11,base.ma
+city_ma_el_jadida,El Jadida,24000,state_ma_06,base.ma
+city_ma_ait_melloul,Aït Melloul,86150,state_ma_09,base.ma
+city_ma_beni_mellal,Béni Mellal,23000,state_ma_05,base.ma
+city_ma_mohammedia,Mohammédia,28800,state_ma_06,base.ma
+city_ma_khouribga,Khouribga,25000,state_ma_05,base.ma
+city_ma_settat,Settat,26000,state_ma_06,base.ma
+city_ma_nador,Nador,62000,state_ma_02,base.ma
+city_ma_taza,Taza,35000,state_ma_03,base.ma
+city_ma_larache,Larache,92000,state_ma_01,base.ma
+city_ma_guelmim,Guelmim,81000,state_ma_10,base.ma
+city_ma_khemisset,Khémisset,15000,state_ma_04,base.ma
+city_ma_bouskoura,Bouskoura,27182,state_ma_06,base.ma
+city_ma_inezgane,Inezgane,80350,state_ma_09,base.ma
+city_ma_berkane,Berkane,60300,state_ma_02,base.ma
+city_ma_khenifra,Khénifra,54000,state_ma_05,base.ma
+city_ma_taourirt,Taourirt,65800,state_ma_02,base.ma
+city_ma_ben_guerir,Ben Guerir,43150,state_ma_07,base.ma
+city_ma_dakhla,Dakhla,73000,state_ma_12,base.ma
+city_ma_dcheira_el_jihadia,Dcheira El Jihadia,80000,state_ma_09,base.ma
+city_ma_errachidia,Errachidia,52000,state_ma_08,base.ma
+city_ma_sidi_slimane,Sidi Slimane,14200,state_ma_04,base.ma
+city_ma_tiznit,Tiznit,85000,state_ma_09,base.ma
+city_ma_taroudant,Taroudant,83000,state_ma_09,base.ma
+city_ma_guercif,Guercif,35100,state_ma_02,base.ma
+city_ma_essaouira,Essaouira,44000,state_ma_07,base.ma
+city_ma_sidi_kacem,Sidi Kacem,16000,state_ma_04,base.ma
