@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document_inherit_bst_sale_city"
+              inherit_id="sale.report_saleorder_document">
+        <xpath expr="//div[@name='partner_header']" position="after">
+            <p t-if="doc.city_id">
+                <strong>City :</strong>
+                <span t-field="doc.city_id.name"/>
+            </p>
+        </xpath>
+    </template>
+</odoo>
