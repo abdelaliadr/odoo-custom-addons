@@ -1,0 +1,25 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * your_module
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Language: fr\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: your_module
+#: model:ir.model.fields,field_description:your_module.field_sale_order__city_id
+msgid "City"
+msgstr "Ville"
+
+#. module: your_module
+#: model:ir.model.fields,help:your_module.field_sale_order__city_id
+msgid "Customer's city, automatically transferred from the customer record and manually editable on the quotation. Any modification here never updates the customer record."
+msgstr "Ville du client, reportée automatiquement depuis la fiche client et modifiable manuellement sur le devis. Une modification ici ne met jamais à jour la fiche du client."
+
+#. module: your_module
+#: code:addons/your_module/models/sale_order.py:0
+msgid "Please enter the city before confirming the quotation %s."
+msgstr "Veuillez renseigner la ville avant de confirmer le devis %s."
