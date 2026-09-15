@@ -36,8 +36,10 @@ class TestSaleOrderCity(TransactionCase):
         })
 
     def _create_order(self, partner):
+        """Simule ce que produirait le formulaire une fois l'onchange"""
         return self.env['sale.order'].create({
             'partner_id': partner.id,
+            'city_id': partner.city_id.id,
             'order_line': [(0, 0, {
                 'product_id': self.product.id,
                 'product_uom_qty': 1,
