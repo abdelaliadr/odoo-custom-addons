@@ -1,0 +1,13 @@
+id,name,code,country_id/id
+state_ma_01,Tanger-Tétouan-Al Hoceïma,01,base.ma
+state_ma_02,Oriental,02,base.ma
+state_ma_03,Fès-Meknès,03,base.ma
+state_ma_04,Rabat-Salé-Kénitra,04,base.ma
+state_ma_05,Béni Mellal-Khénifra,05,base.ma
+state_ma_06,Casablanca-Settat,06,base.ma
+state_ma_07,Marrakech-Safi,07,base.ma
+state_ma_08,Drâa-Tafilalet,08,base.ma
+state_ma_09,Souss-Massa,09,base.ma
+state_ma_10,Guelmim-Oued Noun,10,base.ma
+state_ma_11,Laâyoune-Sakia El Hamra,11,base.ma
+state_ma_12,Dakhla-Oued Ed-Dahab,12,base.ma

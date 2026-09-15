@@ -12,7 +12,7 @@ les contacts marocains.
     'depends': ['base_address_extended'],
     'data': [
        'data/res_country_data.xml',
-       'data/res_country_state_data.xml',
+       'data/res.country.state.csv',
        'data/res.city.csv',
     ],
     'post_init_hook': 'post_init_hook',
