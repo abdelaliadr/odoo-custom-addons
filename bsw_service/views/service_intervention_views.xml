@@ -129,7 +129,7 @@
         </group>
     </group>
     <notebook>
-        <page string="Pièces consommées">
+        <page string="Consumed Parts">
             <field name="line_ids">
                 <list>
                     <field name="product_id"/>

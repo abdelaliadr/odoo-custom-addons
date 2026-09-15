@@ -319,3 +319,19 @@ msgstr "Utilisateur Odoo correspondant à ce technicien, utile pour filtrer 'mes
 #. module: bsw_service
 msgid "Product that can be used as a spare part during an intervention."
 msgstr "Produit utilisable comme pièce détachée sur une intervention."
+
+#. module: bsw_service
+msgid "Today's interventions visible to the logged-in user."
+msgstr "Interventions du jour visibles par l'utilisateur connecté."
+
+#. module: bsw_service
+msgid "Updates the status of an intervention for the logged-in technician."
+msgstr "Met à jour le statut d'une intervention du technicien connecté."
+
+#. module: bsw_service
+msgid "Intervention not found."
+msgstr "Intervention introuvable."
+
+#. module: bsw_service
+msgid "Unsupported transition: %s"
+msgstr "Transition non supportée : %s"

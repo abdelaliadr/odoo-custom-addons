@@ -8,9 +8,9 @@ class SaleOrder(models.Model):
         comodel_name='res.city',
         string='City',
         domain="[('country_id', '=', partner_country_id)]",
-        help="Ville du client, reportée automatiquement depuis la fiche "
-             "client et modifiable manuellement sur le devis. Une "
-             "modification ici ne met jamais à jour la fiche du client.",
+        help="Customer's city, automatically transferred from the customer "
+             "record and manually editable on the quotation. Any "
+             "modification here never updates the customer record.",
     )
     partner_country_id = fields.Many2one(
         comodel_name='res.country',
@@ -19,21 +19,20 @@ class SaleOrder(models.Model):
 
     @api.onchange('partner_id')
     def _onchange_partner_id_city(self):
-        """reporte la ville du client sur le devis à la
-        sélection du client, et la met à jour si le client change tant que
-        le devis est en brouillon.Ceci ne s'applique que dans le
-        sens client -> devis, jamais l'inverse."""
+        """Transfers the customer's city to the quotation when the
+        customer is selected, and updates it if the customer changes while
+        the quotation is still in draft. This only applies in the
+        customer -> quotation direction, never the reverse."""
         for order in self:
             order.city_id = order.partner_id.city_id
 
     def action_confirm(self):
-        """bloque la confirmation tant que la ville n'est pas
-        renseignée, avec un message explicite. Le devis reste en brouillon."""
+        """Blocks confirmation until the city is filled in, with an
+        explicit message. The quotation remains in draft."""
         orders_without_city = self.filtered(lambda order: not order.city_id)
         if orders_without_city:
             raise UserError(
-    "Veuillez renseigner la ville avant de confirmer le devis %s."
-    % ', '.join(orders_without_city.mapped('name'))
-)
-        return super().action_confirm()            
-
+                "Please enter the city before confirming the quotation %s."
+                % ', '.join(orders_without_city.mapped('name'))
+            )
+        return super().action_confirm()

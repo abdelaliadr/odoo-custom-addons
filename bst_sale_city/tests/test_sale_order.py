@@ -5,8 +5,8 @@ from odoo.tests.common import TransactionCase
 
 @tagged('post_install', '-at_install')
 class TestSaleOrderCity(TransactionCase):
-    """Tests du Module 2 - bst_sale_city.
-    Chaque test correspond à un critère d'acceptation du cahier des charges."""
+    """Tests for Module 2 - bst_sale_city.
+    Each test corresponds to an acceptance criterion from the specification."""
 
     @classmethod
     def setUpClass(cls):
@@ -17,26 +17,26 @@ class TestSaleOrderCity(TransactionCase):
         ], limit=2)
 
         cls.partner_with_city = cls.env['res.partner'].create({
-            'name': 'Client Avec Ville',
+            'name': 'Customer With City',
             'country_id': cls.morocco.id,
             'city_id': cls.city_a.id,
         })
         cls.partner_other_city = cls.env['res.partner'].create({
-            'name': 'Client Autre Ville',
+            'name': 'Customer Other City',
             'country_id': cls.morocco.id,
             'city_id': cls.city_b.id,
         })
         cls.partner_without_city = cls.env['res.partner'].create({
-            'name': 'Client Sans Ville',
+            'name': 'Customer Without City',
             'country_id': cls.morocco.id,
         })
         cls.product = cls.env['product.product'].create({
-            'name': 'Produit de test BF-VILLES-DEVIS',
+            'name': 'BF-CITIES-QUOTATION Test Product',
             'list_price': 100.0,
         })
 
     def _create_order(self, partner):
-        """Simule ce que produirait le formulaire une fois l'onchange"""
+        """Simulates what the form would produce after the onchange."""
         return self.env['sale.order'].create({
             'partner_id': partner.id,
             'city_id': partner.city_id.id,
@@ -47,20 +47,20 @@ class TestSaleOrderCity(TransactionCase):
         })
 
     def test_01_ville_reportee_a_la_creation(self):
-        """CA-01 : la création d'un devis pour un client avec ville
-        renseigne le champ sans action de l'utilisateur (via onchange,
-        déclenché manuellement ici pour simuler le formulaire)."""
+        """CA-01: creating a quotation for a customer with a city
+        fills in the field without user action (via onchange,
+        manually triggered here to simulate the form)."""
         order = self.env['sale.order'].new({'partner_id': self.partner_with_city.id})
         order._onchange_partner_id_city()
         self.assertEqual(
             order.city_id, self.partner_with_city.city_id,
-            "La ville du devis doit être reportée automatiquement depuis "
-            "le client à la création."
+            "The quotation city must be automatically transferred from "
+            "the customer when creating the quotation."
         )
 
     def test_02_changement_client_met_a_jour_ville(self):
-        """CA-02 : un changement de client sur un devis en brouillon met la
-        ville à jour."""
+        """CA-02: changing the customer on a quotation in draft updates
+        the city."""
         order = self.env['sale.order'].new({'partner_id': self.partner_with_city.id})
         order._onchange_partner_id_city()
         self.assertEqual(order.city_id, self.city_a)
@@ -69,29 +69,29 @@ class TestSaleOrderCity(TransactionCase):
         order._onchange_partner_id_city()
         self.assertEqual(
             order.city_id, self.city_b,
-            "La ville doit être mise à jour après changement de client."
+            "The city must be updated after changing the customer."
         )
 
     def test_03_modification_manuelle_ne_remonte_pas_sur_client(self):
-        """CA-03 : la modification de la ville sur le devis ne change pas
-        la fiche du client."""
+        """CA-03: modifying the city on the quotation does not change
+        the customer's record."""
         order = self._create_order(self.partner_with_city)
         order.city_id = self.city_b
         order.flush_recordset()
 
         self.assertEqual(
             order.city_id, self.city_b,
-            "La ville du devis doit refléter la modification manuelle."
+            "The quotation city must reflect the manual modification."
         )
         self.assertEqual(
             self.partner_with_city.city_id, self.city_a,
-            "La fiche du client ne doit jamais être modifiée par un "
-            "changement de ville fait depuis le devis."
+            "The customer's record must never be modified by a city "
+            "change made from the quotation."
         )
 
     def test_04_confirmation_bloquee_sans_ville(self):
-        """CA-04 : la confirmation d'un devis sans ville lève une erreur
-        explicite et le devis reste en brouillon."""
+        """CA-04: confirming a quotation without a city raises an explicit
+        error and the quotation remains in draft."""
         order = self._create_order(self.partner_without_city)
         self.assertFalse(order.city_id)
 
@@ -100,41 +100,41 @@ class TestSaleOrderCity(TransactionCase):
 
         self.assertEqual(
             order.state, 'draft',
-            "Le devis doit rester en brouillon si la confirmation a "
-            "échoué faute de ville renseignée."
+            "The quotation must remain in draft if confirmation "
+            "fails because no city has been provided."
         )
 
     def test_05_devis_sans_ville_peut_etre_enregistre(self):
-        """CA-05 : un devis sans ville peut être créé et enregistré en
-        brouillon sans erreur (le blocage ne s'applique qu'à la
-        confirmation, pas à la création/sauvegarde)."""
+        """CA-05: a quotation without a city can be created and saved in
+        draft without error (the restriction only applies to
+        confirmation, not creation/saving)."""
         order = self._create_order(self.partner_without_city)
-        self.assertTrue(order.id, "Le devis doit être créé sans erreur.")
+        self.assertTrue(order.id, "The quotation must be created without error.")
         self.assertEqual(order.state, 'draft')
         self.assertFalse(order.city_id)
 
     def test_06_confirmation_reussit_avec_ville(self):
-        """CA-04 (cas nominal) : un devis avec une ville renseignée se
-        confirme normalement, sans erreur."""
+        """CA-04 (nominal case): a quotation with a city provided is
+        confirmed normally without error."""
         order = self._create_order(self.partner_with_city)
         self.assertTrue(order.city_id)
         order.action_confirm()
         self.assertEqual(
             order.state, 'sale',
-            "Le devis doit pouvoir être confirmé normalement lorsque la "
-            "ville est renseignée."
+            "The quotation must be confirmed normally when "
+            "the city is provided."
         )
 
     def test_07_recherche_et_regroupement_par_ville(self):
-        """CA-06 : la ville est disponible en recherche et en regroupement
-        sur la liste des devis (on vérifie ici que le champ est bien
-        recherchable/groupable au niveau du modèle)."""
+        """CA-06: the city is available for search and grouping
+        on the quotation list (here we verify that the field is
+        searchable/groupable at the model level)."""
         order = self._create_order(self.partner_with_city)
 
         found = self.env['sale.order'].search([('city_id', '=', self.city_a.id)])
         self.assertIn(
             order, found,
-            "Le devis doit être trouvable par une recherche sur city_id."
+            "The quotation must be findable by searching on city_id."
         )
 
         grouped = self.env['sale.order'].read_group(
@@ -144,23 +144,23 @@ class TestSaleOrderCity(TransactionCase):
         )
         self.assertTrue(
             grouped,
-            "Le regroupement par ville (city_id) doit fonctionner sans "
-            "erreur sur le modèle sale.order."
+            "Grouping by city (city_id) must work without "
+            "error on the sale.order model."
         )
 
     def test_08_commande_confirmee_avant_module_reste_consultable(self):
-        """CA-08 : une commande déjà confirmée (même sans ville, simulant
-        une commande antérieure à l'installation du module) reste
-        consultable sans erreur ; la contrainte RG-06 ne s'applique qu'à
-        l'appel explicite de action_confirm(), jamais à la simple lecture
-        d'un enregistrement existant."""
+        """CA-08: an already confirmed order (even without a city, simulating
+        an order created before the module was installed) remains
+        accessible without error; the RG-06 constraint only applies to
+        an explicit call to action_confirm(), never to simply reading
+        an existing record."""
         order = self._create_order(self.partner_without_city)
-        # Simule une commande confirmée avant la mise en service du
-        # module, en contournant volontairement action_confirm() pour ne
-        # pas déclencher le contrôle RG-06 (qui n'existait pas à l'époque).
+        # Simulates an order confirmed before the module was deployed,
+        # deliberately bypassing action_confirm() so as not to trigger
+        # the RG-06 check (which did not exist at that time).
         order.write({'state': 'sale'})
 
         self.assertEqual(order.state, 'sale')
         self.assertFalse(order.city_id)
-        # La simple lecture ne doit lever aucune exception.
+        # Simply reading the record must not raise any exception.
         self.assertTrue(order.name)
