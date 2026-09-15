@@ -13,7 +13,7 @@
         </field>
     </record>
 
-    <record id="view_order_tree_inherit_bst_sale_city" model="ir.ui.view">
+    <record id="view_quotation_tree_inherit_bst_sale_city" model="ir.ui.view">
         <field name="name">sale.order.list.inherit.bst.sale.city</field>
         <field name="model">sale.order</field>
         <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
@@ -24,6 +24,18 @@
             </field>
         </field>
     </record>
+
+    <record id="view_order_tree_inherit_bst_sale_city" model="ir.ui.view">
+    <field name="name">sale.order.list.inherit.bst.sale.city</field>
+    <field name="model">sale.order</field>
+    <field name="inherit_id" ref="sale.view_order_tree"/>
+    <field name="arch" type="xml">
+        <field name="partner_id" position="after">
+            <field name="partner_country_id" column_invisible="1"/>
+            <field name="city_id" optional="show"/>
+        </field>
+    </field>
+</record>
 
     <record id="view_sales_order_filter_inherit_bst_sale_city" model="ir.ui.view">
         <field name="name">sale.order.search.inherit.bst.sale.city</field>

@@ -2,9 +2,9 @@
 <odoo>
     <template id="report_saleorder_document_inherit_bst_sale_city"
               inherit_id="sale.report_saleorder_document">
-        <xpath expr="//div[@name='partner_header']" position="after">
-            <p t-if="doc.city_id">
-                <strong>City :</strong>
+        <xpath expr="//div[@t-field='doc.partner_id']" position="after">
+            <p t-if="doc.city_id" class="mb-0">
+                <strong>City : </strong>
                 <span t-field="doc.city_id.name"/>
             </p>
         </xpath>
