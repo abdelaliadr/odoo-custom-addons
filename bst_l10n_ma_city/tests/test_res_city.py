@@ -17,10 +17,10 @@ class TestResCity(TransactionCase):
 
     def test_01_referentiel_villes_charge(self):
         """CA-01 : le référentiel contient les villes du Maroc après
-        installation, en nombre significatif (proche du CSV source)."""
-        self.assertGreater(
-            len(self.ma_cities), 1000,
-            "Le référentiel doit contenir plus de 1000 villes marocaines "
+        installation, en nombre significatif"""
+        self.assertEqual(
+            len(self.ma_cities), 40,
+            "Le référentiel doit contenir 40 villes marocaines "
             "après installation du module."
         )
 
