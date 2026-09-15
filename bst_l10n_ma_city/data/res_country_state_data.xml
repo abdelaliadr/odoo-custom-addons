@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="state_ma_01" model="res.country.state">
+        <field name="name">Tanger-Tétouan-Al Hoceïma</field>
+        <field name="code">01</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    <record id="state_ma_02" model="res.country.state">
+        <field name="name">Oriental</field>
+        <field name="code">02</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    <record id="state_ma_03" model="res.country.state">
+        <field name="name">Fès-Meknès</field>
+        <field name="code">03</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    <record id="state_ma_04" model="res.country.state">
+        <field name="name">Rabat-Salé-Kénitra</field>
+        <field name="code">04</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    <record id="state_ma_05" model="res.country.state">
+        <field name="name">Béni Mellal-Khénifra</field>
+        <field name="code">05</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    <record id="state_ma_06" model="res.country.state">
+        <field name="name">Casablanca-Settat</field>
+        <field name="code">06</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    <record id="state_ma_07" model="res.country.state">
+        <field name="name">Marrakech-Safi</field>
+        <field name="code">07</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    <record id="state_ma_08" model="res.country.state">
+        <field name="name">Drâa-Tafilalet</field>
+        <field name="code">08</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    <record id="state_ma_09" model="res.country.state">
+        <field name="name">Souss-Massa</field>
+        <field name="code">09</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    <record id="state_ma_10" model="res.country.state">
+        <field name="name">Guelmim-Oued Noun</field>
+        <field name="code">10</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    <record id="state_ma_11" model="res.country.state">
+        <field name="name">Laâyoune-Sakia El Hamra</field>
+        <field name="code">11</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+    <record id="state_ma_12" model="res.country.state">
+        <field name="name">Dakhla-Oued Ed-Dahab</field>
+        <field name="code">12</field>
+        <field name="country_id" ref="base.ma"/>
+    </record>
+</odoo>
