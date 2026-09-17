@@ -23,8 +23,8 @@ class SaleOrder(models.Model):
         customer is selected, and updates it if the customer changes while
         the quotation is still in draft. This only applies in the
         customer -> quotation direction, never the reverse."""
-        for order in self:
-            order.city_id = order.partner_id.city_id
+        for order in self.filtered(lambda o: o.state == 'draft'):
+         order.city_id = order.partner_id.city_id
 
     def action_confirm(self):
         """Blocks confirmation until the city is filled in, with an
